@@ -48,3 +48,5 @@ jobs:
           push: true
         
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
+
+    

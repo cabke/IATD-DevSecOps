@@ -45,4 +45,4 @@ jobs:
                   echo "FQDN: $FQDN"
                  
                   WEEK2_SUBMIT=$(curl -X POST -H "Authorization: Bearer $AZURE_ACCESS_TOKEN" -d "https://$FQDN" https://devsecops-ver.azurewebsites.net/api/week2-submit)
-                  echo "Week2 submit: $WEEK2_SUBMIT"        
+                  echo "Week2 submit: $WEEK2_SUBMIT"

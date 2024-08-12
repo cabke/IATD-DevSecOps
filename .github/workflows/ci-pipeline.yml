@@ -25,7 +25,7 @@ jobs:
         with:
           name: test-results
           path: junit/test-results.
-sonarqube:
+  sonarqube:
     needs: test
     if: true
     runs-on: ubuntu-latest
@@ -40,7 +40,8 @@ sonarqube:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_URL }}      
         
-build:
+
+  build:
     needs: sonarqube
     runs-on: ubuntu-latest
     steps:

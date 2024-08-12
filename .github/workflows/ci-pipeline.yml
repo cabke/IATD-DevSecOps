@@ -120,25 +120,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:dast-test              
-      - uses: azure/login@v1
-        with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
-      - name: Deploy DAST Container App
-        uses: azure/container-apps-deploy-action@v1
-        with:
-            imageToDeploy: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:dast-test
-            containerAppName: devops-test-app
-            containerAppEnvironment: devops-app-env
-            resourceGroup: devsecops-lab
-            location: australiaeast
-            targetPort: 5000
       - name: Get deployed DAST app url
         run: |
               export FQDN=$(az containerapp show -n devops-test-app -g devsecops-lab --query properties.configuration.ingress.fqdn -o tsv)

@@ -42,7 +42,7 @@ jobs:
         
 
   build:
-    needs: sonarqube
+    needs: [test, sonarqube, dast]
     runs-on: ubuntu-latest
     steps:
       -
@@ -103,7 +103,7 @@ jobs:
            name: sonarqube-report
            path: sonarqube-report.json 
   dast:
-    needs: [test, sonarqube]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

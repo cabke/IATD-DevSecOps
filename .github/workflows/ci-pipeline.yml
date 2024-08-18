@@ -62,10 +62,8 @@ jobs:
           push: true
        
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
- 
-         
       - name: Download SonarQube report
-       run: |
+        run: |
            sleep 30
            URL="${{ secrets.SONAR_URL }}/api/qualitygates/project_status?p=1&projectKey=devsecops-app&branch=main"
            echo "Report URL $URL"
@@ -75,7 +73,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
            name: sonarqube-report
-           path: sonarqube-report.json
+           path: sonarqube-report.json       
   dast:
     needs: [test]
     runs-on: ubuntu-latest
@@ -140,4 +138,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zap-report
-          path: report_json.json  
+          path: report_json.json 

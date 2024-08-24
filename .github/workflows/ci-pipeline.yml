@@ -39,7 +39,6 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_URL }}      
   build:
      needs: [test, sonarqube, dast]
-     if: true
      runs-on: ubuntu-latest
      steps:
       -

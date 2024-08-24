@@ -81,7 +81,7 @@ jobs:
           curl https://$FQDN/ui
           sed -i "s,http://localhost:5000,https://$FQDN,g" $GITHUB_WORKSPACE/openapi_specs/openapi3.yml      
   build:
-     needs: [test, sonarqube,dast]
+     needs: [test, sonarqube, dast]
      runs-on: ubuntu-latest
      steps:
       -

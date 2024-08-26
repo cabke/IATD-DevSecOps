@@ -168,7 +168,7 @@ jobs:
                     
 
   submit_reports:
-   needs: [test, sonarqube, dast, build]
+   needs: [sonarqube, dast, build]
    if: true
    runs-on: ubuntu-latest
    steps:

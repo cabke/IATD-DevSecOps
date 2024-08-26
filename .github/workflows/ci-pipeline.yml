@@ -136,7 +136,7 @@ jobs:
            name: sonarqube-report
            path: sonarqube-report.json
   image-scan:
-    needs: [test]
+    needs: test
     if: true
     runs-on: ubuntu-latest
     steps:

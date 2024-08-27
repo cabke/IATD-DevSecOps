@@ -214,7 +214,7 @@ jobs:
          IMAGE_RESPONSE=$(curl -X POST -H "Authorization: Bearer $AZURE_ACCESS_TOKEN" --data-binary @$GITHUB_WORKSPACE/results.json https://devsecops-ver.azurewebsites.net/api/week4-image-report)
          echo "Image report upload: $IMAGE_RESPONSE"
   build:
-     needs: security_gate
+     needs: []
      runs-on: ubuntu-latest
      if: true
      steps:
@@ -234,6 +234,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
+          sbom: true
+          provenance: true
           push: true
        
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest

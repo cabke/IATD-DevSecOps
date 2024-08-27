@@ -182,7 +182,7 @@ jobs:
         
 
   submit_reports:
-   needs: [sonarqube, dast, image-scan]
+   needs:  [build]
    if: true
    runs-on: ubuntu-latest
    steps:

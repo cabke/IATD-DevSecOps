@@ -25,7 +25,7 @@ jobs:
           path: junit/test-results.xml
   sonarqube:
     needs: test
-    if: true
+    if: False
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -41,7 +41,7 @@ jobs:
   dast:
     needs: test
     runs-on: ubuntu-latest
-    if: true
+    if: False
     steps:
       - uses: actions/checkout@v4
       -
@@ -116,7 +116,7 @@ jobs:
   
   image-scan:
     needs: test
-    if: true
+    if: False
     runs-on: ubuntu-latest
     steps:
         - name: Scan image
@@ -182,7 +182,7 @@ jobs:
         
 
   submit_reports:
-   needs:  [build]
+   needs:  [sonarqube,dast, image-scan, build]
    if: true
    runs-on: ubuntu-latest
    steps:

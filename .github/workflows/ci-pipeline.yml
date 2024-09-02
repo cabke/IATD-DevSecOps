@@ -133,10 +133,10 @@ jobs:
             name: image-report
             path: ${{ steps.image-scan.outputs.json }} 
   security_gate:
-      needs: [sonarqube, dast, image-scan]
-      if: true
-      runs-on: ubuntu-latest
-      steps:
+    needs: [sonarqube, dast, image-scan]
+    if: true
+    runs-on: ubuntu-latest
+    steps:
         - name: Download sonarqube-report
           uses: actions/download-artifact@v4
           with:
@@ -180,10 +180,10 @@ jobs:
             
             echo "All security gates passed" 
   submit_reports:
-      needs: [build]
-      if: true
-      runs-on: ubuntu-latest
-      steps:
+    needs: [build]
+    if: true
+    runs-on: ubuntu-latest
+    steps:
          - uses: actions/checkout@v4
          - uses: azure/login@v1
            with:
@@ -228,13 +228,13 @@ jobs:
             WEEK5_RESPONSE=$(curl -X POST  -H "Authorization: Bearer $AZURE_ACCESS_TOKEN"  -d "$IMAGE" https://devsecops-ver.azurewebsites.net/api/week5-report)
             echo "Week5 report upload: $WEEK5_RESPONSE"
   build:
-        needs: [sonarqube, dast, image-scan]
-        if: true
-        permissions:
-         id-token: write
+    needs: [sonarqube, dast, image-scan]
+    if: true
+    permissions:
+    id-token: write
               
-        runs-on: ubuntu-latest
-        steps:
+    runs-on: ubuntu-latest
+    steps:
             -
               name: Set up QEMU
               uses: docker/setup-qemu-action@v3

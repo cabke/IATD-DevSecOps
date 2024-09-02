@@ -213,8 +213,7 @@ jobs:
             DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
             AZURE_ACCESS_TOKEN: ${{ steps.token-gen.outputs.azureAccessToken }}
             IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs
-            
-          run: |
+       run: |
             WEEK1_CONTAINER=$(curl -X POST -H "Authorization: Bearer $AZURE_ACCESS_TOKEN" -d "$DOCKERHUB_USERNAME/devops-labs" https://devsecops-ver.azurewebsites.net/api/week1-container)
             echo "Week1 container upload: $WEEK1_CONTAINER"
                   
@@ -232,7 +231,7 @@ jobs:
     needs: [sonarqube, dast, image-scan]
     if: true
     permissions:
-    id-token: write
+     id-token: write
               
     runs-on: ubuntu-latest
     steps:
@@ -270,4 +269,5 @@ jobs:
               
                     
 
-      
+        
+          

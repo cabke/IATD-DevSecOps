@@ -182,7 +182,7 @@ jobs:
         
 
   submit_reports:
-   needs:  [sonarqube,dast, image-scan]
+   needs:  [build]
    if: true
    runs-on: ubuntu-latest
    steps:
@@ -218,7 +218,7 @@ jobs:
         WEEK5_RESPONSE=$(curl -X POST  -H "Authorization: Bearer $AZURE_ACCESS_TOKEN"  -d "$IMAGE" https://devsecops-ver.azurewebsites.net/api/week5-report)
         echo "Week5 report upload: $WEEK5_RESPONSE"
   build:
-     needs: [submit_reports]
+     needs: [sonarqube,dast, image-scan]
      if: true
      permissions:
       id-token: write
